@@ -1,0 +1,16 @@
+<launch>
+    <arg name="validator" default="0x8a919cC91bA1ac88BF5FdCeb116c35f7Dc1Ed179" />
+
+    <node name="trader" pkg="streamr_agent" type="trader_node" output="screen">
+        <param name="lighthouse" value="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
+        <param name="model" value="QmfK3LyEPLoYJCKXate1PceGLBNBaodwqcV9XirwHZFbsc" />
+        <param name="token" value="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
+        <param name="validator" value="$(arg validator)" />
+        <param name="order_lifetime" value="100" />
+    </node>
+
+    <node name="publisher" pkg="streamr_agent" type="publisher_node" output="screen">
+        <param name="emitter_contract" value="$(arg emitter_contract)" />
+        <param name="emitter_contract_abi" textfile="$(find issuing_service_agent)/abi/emitter.json" />
+    </node>
+</launch>
