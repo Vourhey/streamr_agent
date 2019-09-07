@@ -11,8 +11,8 @@ catkin_package()
 
 catkin_install_python(
     PROGRAMS
-        scripts/trader_node
-		scripts/publisher_node
+        scripts/streamr_trader_node
+		scripts/streamr_publisher_node
     DESTINATION
         ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

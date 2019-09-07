@@ -1,0 +1,5 @@
+# Streamr Agent
+
+Payment token: DATAcoin by Streamr 0x0Cf0Ee63788A0849fE5297F3407f701E122cC023
+
+After a liability is created and received the agent starts publishing data for a specific amount of time
