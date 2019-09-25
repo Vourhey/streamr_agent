@@ -1,8 +1,11 @@
 <launch>
+    <arg name="lighthouse" default="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
+    <arg name="token" default="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
+
     <node name="streamr_trader" pkg="streamr_agent" type="streamr_trader_node" output="screen">
-        <param name="lighthouse" value="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
         <param name="model" value="QmbpGnAyjNeNabUg8gaxTUKDPcozCRDd2JaVck7uHXDu9g" />
-        <param name="token" value="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
+        <param name="lighthouse" value="$(arg lighthouse)" />
+        <param name="token" value="$(arg token)" />
         <param name="order_lifetime" value="100" />
     </node>
 
