@@ -1,5 +1,6 @@
 # ROS
 import rospy
+import smtplib
 from rosbag import Bag
 from std_msgs.msg import String
 
@@ -83,6 +84,34 @@ class StreamrThread(threading.Thread):
         return messages
 
     def _send_email(self):
-        pass # TODO
+        rospy.loginfo("Sending an email to {}".format(self.email))
+        login = rospy.get_param("streamr_publisher/login")
+        email_from = rospy.get_param("streamr_publisher/email_from")
+        if not email_from:
+            email_from = login
+
+        try:
+            serv = smtplib.SMTP(rospy.get_param('streamr_publisher/smtp_provider'), int(rospy.get_param('streamr_publisher/smtp_port')))
+            serv.ehlo()
+            serv.starttls()
+            # serv.ehlo()
+            serv.login(login, rospy.get_param('streamr_publisher/email_password'))
+        except:
+            rospy.loginfo("Error while sending an email")
+
+        liability_link = 'https://etherscan.io/address/{}#readContract'.format(self.liability)
+        drone_register_line = "https://drone-employee.com/#/passport/{}".format(self.liability)
+        footer = '\n--\nBest regards,\nDrone registrating AIRA.'
+        msg = '\r\n'.join([
+            'From: {}'.format(email_from),
+            'To: {}'.format(self.email),
+            'Subject: Streamr via Robonomics',
+            '',
+            'Name {} registered by {} at liability {}. Look at the liability at {}.{}'
+            .format(job['/id_serial'].data, job['/email'].data, liability_link, drone_register_line, footer)
+        ])
+        serv.sendmail(login, addr, msg)
+        rospy.loginfo("Successfully sent!")
+        serv.quit()
 
 

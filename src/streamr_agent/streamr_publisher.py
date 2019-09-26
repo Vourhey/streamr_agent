@@ -24,33 +24,6 @@ class StreamrPublisher:
         th = StreamrThread(liability)
         th.run()
 
-        # new Thread
-        # thread(liability)
-        # t.run()
-        #
-        # Inside thread
-        # pub = rospy.Publisher("/row", String)
-        # liability.service.start(liability.address.address)
-        # streamr = Streamr.init()
-        # time_start = get_current_time()
-        #
-        # time_end = time_start + period
-        # current_time = get_current_time()
-        # while current_time <= time_end:
-        #   row = get_next_row()
-        #   streamr.publish(row)
-        #   pub.publish(row)
-        #
-        #   rospy.sleep(INTERVAL)
-        #   current_time = get_current_time()
-        #
-        # liability.service.finish()
-        # die
-
-
-        # self.current_liability = liability
-        # self.liability_proxy.start(liability.address.address)
-
     def spin(self):
         rospy.spin()
 

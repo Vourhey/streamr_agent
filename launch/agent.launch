@@ -2,6 +2,10 @@
     <arg name="lighthouse" default="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
     <arg name="token" default="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
 
+    <arg name="login" default="" />
+    <arg name="email_from" default="" />
+    <arg name="email_password" default="" />
+
     <node name="streamr_trader" pkg="streamr_agent" type="streamr_trader_node" output="screen">
         <param name="model" value="QmbpGnAyjNeNabUg8gaxTUKDPcozCRDd2JaVck7uHXDu9g" />
         <param name="lighthouse" value="$(arg lighthouse)" />
@@ -9,5 +13,11 @@
         <param name="order_lifetime" value="100" />
     </node>
 
-    <node name="streamr_publisher" pkg="streamr_agent" type="streamr_publisher_node" output="screen" />
+    <node name="streamr_publisher" pkg="streamr_agent" type="streamr_publisher_node" output="screen">
+        <param name="smtp_provider" value="smtp.gmail.com" />
+        <param name="smtp_port" value="587" />
+        <param name="login" value="$(arg login)" /> <!-- Gmail account login -->
+        <param name="email_from" value="$(arg email_from)" /> <!-- if empty, use login as email from -->
+        <param name="email_password" value="$(arg email_password)" /> <!-- app password -->
+    </node>
 </launch>
