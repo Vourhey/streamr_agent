@@ -40,8 +40,9 @@ class StreamrThread(threading.Thread):
         period = int(objective['/period'].data)  # seconds
         self.time_end = int(time()) + period
 
-        stream_id = objective['/stream_id'].data
-        self.streamr = SimpleStreamrClient(stream_id)
+        self.stream_id = objective['/stream_id'].data
+        auth_token = rospy.get_param('streamr_publisher/auth_token')
+        self.streamr = SimpleStreamrClient(self.stream_id, auth_token)
 
         self.email = objective['/email']
 
@@ -99,18 +100,18 @@ class StreamrThread(threading.Thread):
         except:
             rospy.loginfo("Error while sending an email")
 
-        liability_link = 'https://etherscan.io/address/{}#readContract'.format(self.liability)
-        drone_register_line = "https://drone-employee.com/#/passport/{}".format(self.liability)
-        footer = '\n--\nBest regards,\nDrone registrating AIRA.'
+        liability_link = 'https://etherscan.io/address/{}#readContract'.format(self.lia.address.address)
+        streamr_link = "https://{}".format(self.stream_id)
+        footer = '\n--\nBest regards,\nAIRA.'
         msg = '\r\n'.join([
             'From: {}'.format(email_from),
             'To: {}'.format(self.email),
             'Subject: Streamr via Robonomics',
             '',
-            'Name {} registered by {} at liability {}. Look at the liability at {}.{}'
-            .format(job['/id_serial'].data, job['/email'].data, liability_link, drone_register_line, footer)
+            'The stream was created with th id {} at liability {}.{}'
+            .format(streamr_link, liability_link, footer)
         ])
-        serv.sendmail(login, addr, msg)
+        serv.sendmail(login, self.email, msg)
         rospy.loginfo("Successfully sent!")
         serv.quit()
 

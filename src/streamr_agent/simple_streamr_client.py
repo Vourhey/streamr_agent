@@ -2,10 +2,10 @@ import rospy
 import requests
 
 class SimpleStreamrClient:
-    def __init__(self, stream_id):
+    def __init__(self, stream_id, auth_token):
         self.headers = {
             'Content-Type': 'application/json',
-            'authorization': '<token>'
+            'authorization': auth_token
         }
         self.url = 'https://www.streamr.com/api/v1/streams/{}/data'.format(stream_id)
 
