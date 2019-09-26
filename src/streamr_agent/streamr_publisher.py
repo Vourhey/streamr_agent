@@ -1,6 +1,3 @@
-# Standart, System and Third party
-from collections import namedtuple
-
 # ROS
 import rospy
 from std_msgs.msg import String
@@ -18,12 +15,6 @@ class StreamrPublisher:
         rospy.init_node("streamr_publisher_node")
 
         rospy.Subscriber('/liability/ready', Liability, self.on_new_liability)
-
-        rospy.wait_for_service('/liability/finish')
-        self.liability_proxy = namedtuple('liability_srvs_proxy', ['start', 'finish'])(
-                                          rospy.ServiceProxy('/liability/start', StartLiability),
-                                          rospy.ServiceProxy('/liability/finish', FinishLiability))
-
 
         rospy.loginfo("StreamrPublisher is launched!")
 
