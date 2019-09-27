@@ -10,6 +10,6 @@ class SimpleStreamrClient:
         self.url = 'https://www.streamr.com/api/v1/streams/{}/data'.format(stream_id)
 
     def publish(self, data: dict):
-        response = requests.post(self.url, data=data, headers=self.headers)
+        response = requests.post(self.url, json=data, headers=self.headers)
         rospy.loginfo(response)
 

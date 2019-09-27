@@ -41,7 +41,7 @@ def make_demand(objective: str, cost: int) -> Demand:
     rospy.loginfo(demand)
     return demand
 
-def calculate_period(choice: int) -> String:
+def calculate_period(choice: int) -> str:
     switcher = {
         1: 10,
         2: 60,
@@ -49,7 +49,7 @@ def calculate_period(choice: int) -> String:
     }
 
     period = switcher.get(choice, "Invalide choice")
-    return String(str(period))
+    return str(period)
 
 def calculate_cost(choice: int) -> int:
     if choice == 1:
@@ -77,7 +77,7 @@ def create_new_stream() -> str:
         }]
         }
     }
-    response = requests.post(url, data=body, headers=headers)
+    response = requests.post(url, json=body, headers=headers)
     response = response.json()
     rospy.loginfo("Created a new stream: {}".format(response))
     return response['id']
@@ -89,7 +89,7 @@ def create_objective(period: str, stream_id: str, email: str) -> str:
 
     with NamedTemporaryFile(delete=False) as f:
         bag = Bag(f.name, 'w')
-        bag.write('/period', String(str(period)))
+        bag.write('/period', String(period))
         bag.write('/stream_id', String(stream_id))
         bag.write('/email', String(email))
         bag.close()

@@ -6,6 +6,7 @@ from std_msgs.msg import String
 
 from collections import namedtuple
 from ipfsapi import connect
+from tempfile import gettempdir
 import threading
 import os
 from time import time
@@ -36,6 +37,7 @@ class StreamrThread(threading.Thread):
         self.ipfs = connect()   # TODO probably specify the address
 
         objective = self._get_objective(self.lia)
+        rospy.loginfo(objective)
 
         period = int(objective['/period'].data)  # seconds
         self.time_end = int(time()) + period
@@ -44,7 +46,7 @@ class StreamrThread(threading.Thread):
         auth_token = rospy.get_param('streamr_publisher/auth_token')
         self.streamr = SimpleStreamrClient(self.stream_id, auth_token)
 
-        self.email = objective['/email']
+        self.email = objective['/email'].data
 
         self.pub = rospy.Publisher('/data', String, queue_size=128)
 
@@ -64,7 +66,7 @@ class StreamrThread(threading.Thread):
             rospy.sleep(self.INTERVAL)
             current_time = int(time())
 
-        self.liability_proxy.finish(self.lia.address.address)
+        self.liability_proxy.finish(self.lia.address.address, True)
         rospy.sleep(self.INTERVAL)
         self.pub.unregister()
 
