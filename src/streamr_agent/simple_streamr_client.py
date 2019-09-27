@@ -5,7 +5,7 @@ class SimpleStreamrClient:
     def __init__(self, stream_id, auth_token):
         self.headers = {
             'Content-Type': 'application/json',
-            'authorization': auth_token
+            'authorization': 'token ' + auth_token
         }
         self.url = 'https://www.streamr.com/api/v1/streams/{}/data'.format(stream_id)
 
