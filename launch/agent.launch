@@ -1,8 +1,10 @@
 <launch>
     <arg name="lighthouse" default="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
     <arg name="token" default="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
+    <!-- Streamr API key -->
     <arg name="auth_token" default="" />
 
+    <!-- GMail login and app password -->
     <arg name="login" default="" />
     <arg name="email_from" default="" />
     <arg name="email_password" default="" />

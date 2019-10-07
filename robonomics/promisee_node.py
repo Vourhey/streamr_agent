@@ -15,7 +15,7 @@ MODEL = 'QmbpGnAyjNeNabUg8gaxTUKDPcozCRDd2JaVck7uHXDu9g'
 TOKEN = '0x15bb868397d03Aab342db7d0bb2D3A83336699c1'
 LIGHTHOUSE = '0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b'
 VALIDATOR = '0x0000000000000000000000000000000000000000'
-AUTH_TOKEN = 'bFV-LnI1RC66Y7xfWGGK8QkwZ50I-uTgCQx8Z-5lcyTg'
+AUTH_TOKEN = ''
 MULTIPLIER_COST = 10**12     # cost for 1 sec
 TERMINATE = False
 
@@ -37,6 +37,7 @@ def make_demand(objective: str, cost: int) -> Demand:
     demand.validatorFee = UInt256('0')
     demand.deadline = UInt256()
     demand.deadline.uint256 = make_deadline()
+    demand.nonce = UInt256('0')
 
     rospy.loginfo(demand)
     return demand
