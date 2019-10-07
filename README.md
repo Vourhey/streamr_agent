@@ -46,7 +46,7 @@ source devel/setup.bash (zsh)
 ## Launch
 
 ```
-roslaunch streamr_agent agent.launch token:="0x0Cf0Ee63788A0849fE5297F3407f701E122cC023" login:="<GMAIL_LOGIN>" email_password:="<GMAIL_APP_PASSWORD>" auth_token:="<STREAMR_API_TOKEN>"
+roslaunch streamr_agent agent.launch login:="<GMAIL_LOGIN>" email_password:="<GMAIL_APP_PASSWORD>" auth_token:="<STREAMR_API_TOKEN>"
 ```
 
 ## Test

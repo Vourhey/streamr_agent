@@ -1,6 +1,6 @@
 <launch>
-    <arg name="lighthouse" default="0x202a09A451DE674d2d65Bf1C90968a8d8F72cf7b" />
-    <arg name="token" default="0x966EbbFD7ECbCF44b1e05341976e0652CFA01360" />
+    <arg name="lighthouse" default="0xddC8b7F57a8D59AF88C26ea1dd552f965dE1a8A0" />
+    <arg name="token" default="0x0Cf0Ee63788A0849fE5297F3407f701E122cC023" />
     <!-- Streamr API key -->
     <arg name="auth_token" default="" />
 
