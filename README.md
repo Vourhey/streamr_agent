@@ -53,3 +53,7 @@ roslaunch streamr_agent agent.launch login:="<GMAIL_LOGIN>" email_password:="<GM
 
 There is the `robonomics/promisee_node.py` file for testing purpose only. Have a look at the content to figure out how it works
 
+## Dapp
+
+There is a [Dapp](https://github.com/vol4tim/dapp-streamr) for the project. Check it out!
+
